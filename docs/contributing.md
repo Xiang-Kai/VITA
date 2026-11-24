@@ -28,6 +28,12 @@ directories. Simulator receipts used as mocks must carry `synthetic_fixture`.
 New failure handling must preserve the original error and must not turn a
 failed operation into successful evidence.
 
+The test extra includes `markdown-it-py` for the offline documentation checker;
+it is not a training/runtime dependency. Rendered Markdown and HTML links are
+checked, including reference links, nested badges, images and local anchors.
+Fenced/inline code and comments are not interpreted as documentation links.
+External URLs are not fetched, so this check cannot establish their availability.
+
 ## Compatibility
 
 Prepared plans and checkpoints record hashes of every `vita/*.py` source file.
