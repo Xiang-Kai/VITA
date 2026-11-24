@@ -41,6 +41,20 @@ fixtures; it does not provide foundation weights.
 Run from the repository root in the environment containing this package:
 
 ```bash
+python scripts/recipe_budget.py --smoke --microbatch 2
+# Inspect a single-suite paper-budget plan, optionally as JSON:
+python scripts/recipe_budget.py --microbatch 16 --suites libero_object --json
+```
+
+The read-only inspector prints stage updates, effective batches, accumulation,
+training microsteps and requested simulator trials. It creates no files and
+does not load a model or dataset. Its final command is a suggestion, not executed.
+The [website planner](https://xiang-kai.github.io/vita-cvpr26.github.io/#code)
+uses exported defaults from this tool.
+
+To actually write the smoke configuration:
+
+```bash
 python -m vita.libero_recipe prepare --output runs/libero-smoke --smoke \
   --microbatch 2 --episodes-per-task 1 --max-tasks 1
 ```
@@ -145,6 +159,17 @@ This configures 200,000 warmup + 100,000 co-training + 60,000 fine-tuning
 optimizer updates. Effective batches are 1,024 and 192. On one device,
 microbatch 16 uses accumulation 64 and 12. Supported paper-plan microbatches
 are 1, 2, 4, 8, 16, 32 and 64.
+
+At microbatch 16 the complete schedule contains **19,920,000 training
+microsteps**, not 360,000 forward/backward passes. One microstep processes one
+microbatch; one optimizer update follows the configured accumulation count.
+Evaluation, checkpoint writing and export are additional work. These counts
+are not wall-clock or VRAM predictions.
+
+With all four suites, the full simulation request is 4 x 10 x 50 = **2,000
+trials**. A single suite requests 500. These require matching tasks and fixed
+initial states in your existing LIBERO installation; they are not completed
+measurements. A subset run must be reported as that subset, not the full benchmark.
 
 Use only a GPU already authorized for your job, after inspecting utilization
 and free memory. The allocator cap requires another 2 GiB free as a safety

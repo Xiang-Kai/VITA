@@ -35,7 +35,7 @@ experiment logs are **not** distributed.
 | --- | --- | --- |
 | Understand VITA | [Method and implementation scope](docs/methodology.md) | No installation |
 | Test the code | [Install and run CPU tests](docs/quickstart.md#1-install) | Python and package dependencies |
-| Inspect a training plan | [Prepare a configuration](docs/quickstart.md#2-prepare-without-training) | No dataset, weights or GPU |
+| Inspect a training plan | [Read-only budget inspector](docs/quickstart.md#2-prepare-without-training) | No dataset, weights or GPU |
 | Run a small end-to-end experiment | [LIBERO smoke workflow](docs/quickstart.md#4-run-a-small-experiment) | Existing LIBERO data and simulator |
 | Train with paper-matched budgets | [Full schedule](docs/quickstart.md#5-use-the-paper-update-budget) | Data, authorized compute and time |
 | Contribute or publish | [Contributing](docs/contributing.md) / [Release policy](docs/releasing.md) | Synthetic tests and a clean source tree |
@@ -82,6 +82,17 @@ connects each component to its source.
 Table 11 and Section 7.3 of the paper specify the update/batch budgets.
 These are **optimizer updates, not microsteps or epochs**, and are provided as
 configuration, not a claim that full training was completed.
+
+Inspect any supported microbatch/suite combination before creating a run:
+
+```bash
+python scripts/recipe_budget.py --microbatch 16 --suites libero_object
+```
+
+At microbatch 16, the full schedule is 19,920,000 training microsteps.
+The tool also distinguishes requested simulator trials from offline metrics
+and prints a configuration-only prepare command. Add `--smoke` for six updates
+or `--json` for machine-readable output. Nothing is trained or written.
 
 Pretraining uses AdamW, LR `1e-4`, betas `(0.9, 0.95)`, weight decay `0.01` and
 BF16. Fine-tuning updates only the action decoder. Fine-tuning LR `1e-4` and a

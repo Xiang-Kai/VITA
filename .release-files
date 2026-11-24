@@ -32,6 +32,7 @@ docs/training.md
 pyproject.toml
 scripts/build_release.py
 scripts/check_docs.py
+scripts/recipe_budget.py
 tests/conftest.py
 tests/test_ablation.py
 tests/test_calvin.py
@@ -49,6 +50,7 @@ tests/test_optimization.py
 tests/test_prepare.py
 tests/test_pretrained_adapters.py
 tests/test_protocols.py
+tests/test_recipe_budget.py
 tests/test_release.py
 tests/test_rollouts.py
 tests/test_runtime.py

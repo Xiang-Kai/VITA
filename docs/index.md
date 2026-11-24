@@ -19,6 +19,7 @@
 | Component | Entry point |
 | --- | --- |
 | Full LIBERO recipe | [`vita/libero_recipe.py`](../vita/libero_recipe.py) |
+| Read-only budget inspector | [`scripts/recipe_budget.py`](../scripts/recipe_budget.py) |
 | Split-aware HDF5 data | [`vita/dataset.py`](../vita/dataset.py) |
 | Three-stage training and exact resume | [`vita/train.py`](../vita/train.py) |
 | Model and freezing rules | [`vita/model.py`](../vita/model.py) |
