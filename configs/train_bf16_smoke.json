@@ -1,0 +1,15 @@
+{
+  "warmup_steps": 4,
+  "cotrain_steps": 4,
+  "finetune_steps": 2,
+  "batch_size": 2,
+  "accumulation_steps": 2,
+  "learning_rate": 0.0003,
+  "precision": "bfloat16",
+  "seed": 17,
+  "eval_every": 2,
+  "eval_samples": 4,
+  "checkpoint_every": 2,
+  "codebook_init_batches": 0,
+  "memory_gib": 4.0
+}

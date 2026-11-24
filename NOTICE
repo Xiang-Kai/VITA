@@ -1,0 +1,13 @@
+VITA Reference is an independent implementation of the methodology described
+in arXiv:2511.19859v2. It is not the paper authors' official source code and
+does not imply their endorsement.
+
+The MIT license applies to the original source in this distribution.
+LIBERO, MuJoCo, robosuite, DINOv2, PaliGemma, other dependencies, datasets,
+foundation checkpoints and any derived weights retain their own licenses
+and access conditions. None of those datasets or checkpoints are included.
+Obtain them separately and verify your rights before use or redistribution.
+
+Paper-matched training budgets do not establish equivalence of architecture,
+training data, optimization trajectory or benchmark results. See
+docs/methodology.md for explicit implementation assumptions.

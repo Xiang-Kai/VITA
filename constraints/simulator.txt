@@ -1,0 +1,11 @@
+# Separate LIBERO CPU simulation environment; Python 3.10.
+# Install LIBERO and its other dependencies separately. This is not a full lock.
+torch==2.2.0
+numpy==1.26.4
+h5py==3.15.1
+transformers==4.53.3
+mujoco==3.4.0
+robosuite==1.4.1
+bddl==3.6.0
+gym==0.26.2
+PyOpenGL==3.1.10

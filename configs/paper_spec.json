@@ -1,0 +1,46 @@
+{
+  "kind": "documented_paper_specification_NOT_an_executable_training_config",
+  "source": "arXiv:2511.19859v2; supplied PDF; Table 11, Sections 7-8",
+  "image_size": 256,
+  "future_frames": 12,
+  "action_dimension": 7,
+  "sampling_steps": 12,
+  "action_horizon": "not unambiguously fixed by Table 11; SimplerEnv uses chunks of 5",
+  "hybrid_token_length": "unspecified; do not equate to frames without an assumption",
+  "codebook_size": 8192,
+  "codebook_dimension": 1024,
+  "dinov2": {"variant": "base", "parameters_reported": "86M", "frozen": true},
+  "mformer": {"parameters_reported": "20M", "memory_details": "unspecified"},
+  "visual_decoder": {"layers": 12, "hidden_dim": 768, "parameters_reported": "96M"},
+  "action_encoder": {"parameters_reported": "10M"},
+  "action_decoder": {"layers": 12, "hidden_dim": 1024, "parameters_reported": "228M"},
+  "foundation": {"initialization": "PaliGemma", "vision": "SigLIP 400M", "language": "Gemma 2B"},
+  "pretraining": {
+    "batch_size": 1024,
+    "learning_rate": 0.0001,
+    "optimizer": "AdamW",
+    "betas": [0.9, 0.95],
+    "weight_decay": 0.01,
+    "precision": "bfloat16",
+    "warmup_steps": 200000,
+    "cotrain_steps": 100000,
+    "hardware_reported": "16 NVIDIA A100 GPUs",
+    "duration_reported": "1.5 + 3.5 days"
+  },
+  "finetuning": {
+    "calvin": {"batch_size": 192, "steps": 40000},
+    "libero": {"batch_size": 192, "steps": 60000},
+    "simplerenv_fractal": {"batch_size": 128, "steps": 50000, "action_chunk": 5},
+    "simplerenv_bridge": {"batch_size": 128, "steps": 80000, "action_chunk": 5}
+  },
+  "unresolved": [
+    "Discrete token gradient estimator",
+    "Visual-only versus both-modalities warmup codebook update",
+    "Action-only versus all-modules fine-tuning",
+    "Loss coefficients, SSIM window, VQ loss and codebook initialization",
+    "M-Former exact design and temporal token layout",
+    "Checkpoint identities and 256px PaliGemma adaptation",
+    "Mixture proportions contain a DROID frame-count inconsistency",
+    "Dataset filtering, normalization and action-coordinate conventions"
+  ]
+}

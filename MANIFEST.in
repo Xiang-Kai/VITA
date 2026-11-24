@@ -1,0 +1,20 @@
+include README.md LICENSE NOTICE pyproject.toml .release-files .gitignore .gitattributes
+recursive-include vita *.py
+recursive-include tests *.py
+recursive-include configs *.json
+recursive-include constraints *.txt
+recursive-include docs *.md
+recursive-include scripts *.py *.sh
+recursive-include .github *.yml
+global-exclude *.pyc *.pt *.pth *.hdf5 *.log *.jsonl .DS_Store
+prune reports
+prune runs
+prune assets
+prune third_party
+prune data
+prune datasets
+prune logs
+prune outputs
+prune artifacts
+prune private
+prune .private

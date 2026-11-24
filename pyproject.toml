@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vita-reference"
+version = "0.3.2"
+description = "Independent, explicitly scoped reference implementation of VITA"
+requires-python = ">=3.10"
+readme = "README.md"
+license = {file = "LICENSE"}
+dependencies = ["torch>=2.2", "numpy>=1.24", "h5py>=3.10"]
+
+[project.optional-dependencies]
+training = ["torch>=2.5"]
+test = ["pytest>=8"]
+pretrained = ["transformers>=4.51,<5", "sentencepiece"]
+video = ["opencv-python-headless>=4.8"]
+rlds = ["tensorflow-datasets>=4.9", "tensorflow>=2.15"]
+
+[project.scripts]
+vita-validate = "vita.validate:main"
+vita-manifest = "vita.dataset:main"
+vita-train = "vita.train:main"
+vita-evaluate = "vita.evaluate:main"
+vita-libero-eval = "vita.libero_eval:main"
+vita-libero-pipeline = "vita.libero_pipeline:main"
+vita-libero-recipe = "vita.libero_recipe:main"
+vita-mixture = "vita.mixture:main"
+vita-prepare = "vita.prepare:main"
+vita-export = "vita.deploy:main"
+vita-calvin-eval = "vita.calvin_eval:main"
+vita-simpler-eval = "vita.simpler_eval:main"
+vita-sources = "vita.sources:main"
+vita-subset = "vita.subset:main"
+vita-experiments = "vita.experiments:main"
+vita-latency = "vita.latency:main"
+vita-realworld = "vita.realworld:main"
+
+[tool.setuptools.packages.find]
+include = ["vita*"]
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

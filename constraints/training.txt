@@ -1,0 +1,7 @@
+# Tested direct dependencies, not a complete transitive lock.
+# Reference interpreter: Python 3.11.
+torch==2.5.1
+numpy==1.26.4
+h5py==3.12.1
+transformers==4.51.3
+pytest==8.4.2
